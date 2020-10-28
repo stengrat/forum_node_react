@@ -3,22 +3,31 @@ import axios from 'axios';
 import './App.css';
 import PostList from "../PostList";
 import PostForm from "../PostForm";
-import {HashRouter as Router, Switch, Route, Redirect} from "react-router-dom";
+import {HashRouter as Router, Switch, Route, Link, Redirect} from "react-router-dom";
 import LoginForm from "../LoginForm";
 import {auth} from '../../firebase';
 import NavBar from '../../component/NavBar';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 function loggedIn() {
     return localStorage.reactBlogUid;
 }
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-    <Route {...rest} render={(props) => (
-        loggedIn() ?
-            <Component {...props} />
-            : <Redirect to='/login' />
-    )} />
-)
+const PrivateRoute = ({ component: Component, render = null, children = null, ...rest }) => {
+    let renderMethod = render || children;
+
+    return (
+        <Route {...rest} render={(props) => (
+            loggedIn() ?
+                (renderMethod ? renderMethod(props) : <Component {...props} />)
+                : <Redirect to='/login'/>)}
+        />
+    )
+}
 
 class App extends React.Component {
     setupAxios() {
@@ -62,7 +71,18 @@ class App extends React.Component {
 
 function Menu(props) {
     return (
-        <NavBar/>
+        <React.Fragment>
+            <NavBar>
+                <Link to="/posts">Post list</Link>
+                <Link to="/posts/new">Write a new post</Link>                   
+            </NavBar>
+        
+            <PostList>
+            </PostList>
+        </React.Fragment>
+        
+        
+                
     );
 }
 

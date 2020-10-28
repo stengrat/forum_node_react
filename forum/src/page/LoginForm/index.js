@@ -61,10 +61,10 @@ class LoginForm extends React.Component {
         let {txtEmail, txtPassword} = this.state;
 
         auth.createUserWithEmailAndPassword(txtEmail, txtPassword)
-            .then(user => {
+            .then(() => {
                 auth.currentUser.sendEmailVerification().then(() => {
                     this.setState({message: "Usuário criado! Verifique seu e-mail!"});
-                }).catch(e => {
+                }).catch(() => {
                     this.setState({message: "Não foi possível enviar o e-mail de verificação."});
                 })
             }).catch(err => {
