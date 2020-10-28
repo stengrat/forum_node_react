@@ -72,13 +72,8 @@ class App extends React.Component {
 function Menu(props) {
     return (
         <React.Fragment>
-            <NavBar>
-                <Link to="/posts">Post list</Link>
-                <Link to="/posts/new">Write a new post</Link>                   
-            </NavBar>
-        
-            <PostList>
-            </PostList>
+            <NavBar></NavBar>
+            <PostList></PostList>
         </React.Fragment>
         
         
