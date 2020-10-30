@@ -8,9 +8,12 @@
     
 }
 
-body{
-background-image: url("1650896.jpg");
-background-color: #17A589;
+.image{
+    background-image: url("1650896.jpg");
+    background-color: #17A589;
+    position: fixed;    
+    min-width: 100%;   
+    min-height: 100%;
 }
 
 
@@ -26,13 +29,13 @@ background-color: #17A589;
     text-align: center;
     
 }
-.test{
+.botao{
     
     border: 0px;
     border-radius: 2px 2px 2px 2px;
     background-color: #33b5e5;
 }
-.test-second{
+.botao-second{
     background-color: #5AC18E;
 
 }

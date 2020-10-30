@@ -1,5 +1,6 @@
 import React from 'react';
 import './LoginForm.css'
+import NavBar from '../../component/NavBar';
 import {auth} from '../../firebase'
 
 
@@ -76,7 +77,11 @@ class LoginForm extends React.Component {
 
     renderLoggedOut() {
         return (
-            <div>
+            <React.Fragment>
+            <NavBar></NavBar>
+            
+           
+            <div  className="image">
                 <div>{this.state.message}</div>
                 
                     
@@ -94,14 +99,16 @@ class LoginForm extends React.Component {
                         </div>
                         <div className="mt-3 ">
                             <p style={{textAlign: "center"}}>
-                                <input  value="Login" className="btnConfirm test" type="button" onClick={this.onLogin} />
-                                <input value="Create" className="btnCreate test test-second" type="button" onClick={this.onCreate} />
+                                <input  value="Login" className="btnConfirm botao" type="button" onClick={this.onLogin} />
+                                <input value="Create" className="btnCreate botao botao-second" type="button" onClick={this.onCreate} />
                                 
                             </p>
                         </div>
                     </div>
                 
             </div>
+            
+            </React.Fragment>
         )
     }
 
