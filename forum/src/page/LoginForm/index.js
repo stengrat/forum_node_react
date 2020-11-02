@@ -1,9 +1,11 @@
 import React from 'react';
 import './LoginForm.css'
+import NavBar from '../../component/NavBar';
 import {auth} from '../../firebase'
 
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+
 
 class LoginForm extends React.Component {
 
@@ -92,17 +94,38 @@ class LoginForm extends React.Component {
 
     renderLoggedOut() {
         return (
-            <div>
+            <React.Fragment>
+            <NavBar></NavBar>
+            
+           
+            <div  className="image">
                 <div>{this.state.message}</div>
-                <div className="loginForm">
-                    <p><label>E-mail: </label><input type="email" name="txtEmail" value={this.state.txtEmail} onChange={this.onUpdate} /></p>
-                    <p><label>Password: </label><input type="password" name="txtPassword" value={this.state.txtPassword} onChange={this.onUpdate}/></p>
-                    <p style={{textAlign: "center"}}>
-                        <input value="Login" className="btnConfirm" type="button" onClick={this.onLogin} />
-                        <input value="Create" className="btnCreate" type="button" onClick={this.onCreate} />
-                    </p>
-                </div>
+                
+                    
+                    <div className="loginForm card shadow  ">
+                    
+                        <div className="mb-3 inputLogin ">
+                        
+                            <span glyph="star" className="glyphicon glyphicon-envelope " aria-hidden="true"></span>
+                            <input  placeholder="E-mail" type="email" name="txtEmail" value={this.state.txtEmail} onChange={this.onUpdate} />
+                            
+                            
+                        </div>
+                        <div className="inputLogin">
+                            <input  placeholder="Senha" type="password" name="txtPassword" value={this.state.txtPassword} onChange={this.onUpdate}/>
+                        </div>
+                        <div className="mt-3 ">
+                            <p style={{textAlign: "center"}}>
+                                <input  value="Login" className="btnConfirm botao" type="button" onClick={this.onLogin} />
+                                <input value="Create" className="btnCreate botao botao-second" type="button" onClick={this.onCreate} />
+                                
+                            </p>
+                        </div>
+                    </div>
+                
             </div>
+            
+            </React.Fragment>
         )
     }
 

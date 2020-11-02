@@ -1,9 +1,21 @@
 .loginForm {
     margin: 30px auto;
     width: 300px;
-    border: 1px solid black;
+    border: 0px ;
     padding: 10px;
+    margin-top: 15%;
+    
+    
 }
+
+.image{
+    background-image: url("1650896.jpg");
+    background-color: #17A589;
+    position: fixed;    
+    min-width: 100%;   
+    min-height: 100%;
+}
+
 
 .loginForm label {
     display: inline-block;
@@ -13,6 +25,20 @@
     margin: 0 5px;
 }
 
+.inputLogin {
+    text-align: center;
+    
+}
+.botao{
+    
+    border: 0px;
+    border-radius: 2px 2px 2px 2px;
+    background-color: #33b5e5;
+}
+.botao-second{
+    background-color: #5AC18E;
+
+}
 .loginForm input {
     margin: 2px;
 }
