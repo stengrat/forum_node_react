@@ -11,8 +11,11 @@ const NavBar = () => {
         <Navbar bg="dark" variant="dark">
             <Navbar.Brand href="#home" className="mx-5">ForDevs</Navbar.Brand>
             <Navbar.Collapse className="justify-content-end">
+                <LinkContainer to="/posts/new">
+                    <Button className="btn btn-sm mx-1">Novo Post</Button>
+                </LinkContainer>
                 <LinkContainer to="/login">
-                    <Button>Login</Button>
+                    <Button className="btn btn-sm mx-1">Login</Button>
                 </LinkContainer>
             </Navbar.Collapse>
         </Navbar>

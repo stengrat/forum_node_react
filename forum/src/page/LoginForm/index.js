@@ -3,6 +3,8 @@ import './LoginForm.css'
 import NavBar from '../../component/NavBar';
 import {auth} from '../../firebase'
 
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
 
 
 class LoginForm extends React.Component {
@@ -25,9 +27,21 @@ class LoginForm extends React.Component {
         let {user} = this.state;
 
         return (
-            <div>
-                {`Welcome ${user.email}!`}
-            </div>
+            <Card className="my-5 mx-5" style={{ width: '85%' }}>
+                <Card.Img variant="top" src="holder.js/100px180" />
+                <Card.Body>
+                    <Card.Title>{`Welcome ${user.name}!`}</Card.Title>
+                    <Card.Subtitle>{user.email}</Card.Subtitle>
+                    <Card.Text>
+                    Some quick example text to build on the card title and make up the bulk of
+                    the card's content.
+                    {user.photo}
+                    {user.emailVerified}
+                    {user.uid}
+                    </Card.Text>
+                    <Button variant="primary">Go somewhere</Button>
+                </Card.Body>
+            </Card>
         );
     }
 
@@ -52,7 +66,10 @@ class LoginForm extends React.Component {
                 this.setState({
                     user: {
                         name: user.displayName,
-                        email: user.email
+                        email: user.email,
+                        photo: user.photoURL,
+                        emailVerified: user.emailVerified,
+                        uid: user.uid
                     }
                 });
             }).catch(err => {
