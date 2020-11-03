@@ -37,6 +37,23 @@ async function addPost(post) {
         ...post
     });
     alert("Adicionado: " + added.id);
+
+    post.uid = added.id;
+
+    await db.collection("post").doc(added.id).update({
+        userId: "1",
+        ...post
+    })
+}
+
+async function updatePost(post, id){
+    post.uid = id;
+    let update = await db.collection("post").doc(id).update({
+        userId: "1",
+        ...post
+    })
+
+    alert("Update: " + update)
 }
 
 function PostForm(props) {
@@ -64,11 +81,20 @@ function PostForm(props) {
             });
     }, []);
 
+    var button;
+    if(id === "new"){
+       button = <Button onClick={() => addPost(inputs)}>enviar</Button>
+
+    }else{
+        button =<Button onClick={() => updatePost(inputs, id)}>update</Button>
+    
+    }
+
     return (
     <React.Fragment>
         <NavBar></NavBar>
         <Container className="mb-5">
-        <h1 className="mt-5">Criar/Editar Post</h1>
+            <h1 className="mt-5">Criar/Editar Post</h1>
             <hr className="mb-5"></hr>
             <Row>                
                 <Col className="col-sm-12 col-md-6">
@@ -95,19 +121,17 @@ function PostForm(props) {
                         Adicione as tags referentes.
                         </Form.Text>
                     </Form.Group>
+                    <hr></hr>
                     <Form.Group controlId="formUid">
                         <Form.Label><label htmlFor="txtId">Uid</label></Form.Label>
                         <Form.Control name="txtId" type="text" placeholder={id} readOnly />
                     </Form.Group>
-                    <Button onClick={() => addPost(inputs)}>
-                        enviar
-                    </Button>
+                    {button}
                     <LinkContainer to="/" className="mx-3">
-                        <Button variant="outline-secondary">Fechar</Button>
+                        <Button variant="outline-danger">Fechar</Button>
                     </LinkContainer>  
-                    
-                    
                 </Col>
+
                 <Col className="col-sm-12 col-md-6">
                     <h3 className="ml-5 pl-5">Preview</h3>
                     <div>

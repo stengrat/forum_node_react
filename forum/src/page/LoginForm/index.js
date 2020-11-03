@@ -5,6 +5,8 @@ import {auth} from '../../firebase'
 
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
 
 class LoginForm extends React.Component {
@@ -100,27 +102,43 @@ class LoginForm extends React.Component {
            
             <div  className="image">
                 <div>{this.state.message}</div>
-                
-                    
-                    <div className="loginForm card shadow  ">
-                    
-                        <div className="mb-3 inputLogin ">
+
+                    <Card className="loginForm shadow-lg text-center mx-auto my-5"  style={{ width: '30%' }}>
+                        <Card.Header>
+                            <ButtonGroup aria-label="Basic example">
+                                <Button variant="outline-secondary">Login</Button>
+                                <Button variant="outline-secondary">Registrar</Button>
+                            </ButtonGroup>                    
+                        </Card.Header>
+                        <Card.Body>
+                            <Card.Title className="my-3">Login</Card.Title>
+                            <Card.Text>
+                                <Form.Group controlId="formBasicEmail">
+                                    <Form.Control type="email" placeholder="E-mail" name="txtEmail" value={this.state.txtEmail} onChange={this.onUpdate} />
+                                </Form.Group>
+
+                                <Form.Group controlId="formBasicPassword">
+                                    <Form.Control placeholder="Senha" type="password" name="txtPassword" value={this.state.txtPassword} onChange={this.onUpdate}/>
+                                </Form.Group>
+                            </Card.Text>
+                        </Card.Body>
+                        <Card.Body>
+                            <Button variant="success" onClick={this.onLogin}>Realizar Login</Button>
+                        </Card.Body>
+
                         
-                            <span glyph="star" className="glyphicon glyphicon-envelope " aria-hidden="true"></span>
-                            <input  placeholder="E-mail" type="email" name="txtEmail" value={this.state.txtEmail} onChange={this.onUpdate} />
-                            
-                            
-                        </div>
-                        <div className="inputLogin">
-                            <input  placeholder="Senha" type="password" name="txtPassword" value={this.state.txtPassword} onChange={this.onUpdate}/>
-                        </div>
-                        <div className="mt-3 ">
+
+                        <div className="mt-3" hidden>
                             <p style={{textAlign: "center"}}>
-                                <input  value="Login" className="btnConfirm botao" type="button" onClick={this.onLogin} />
+                                <input  value="Login" className="btnConfirm botao" type="button"  />
                                 <input value="Create" className="btnCreate botao botao-second" type="button" onClick={this.onCreate} />
-                                
                             </p>
                         </div>
+                    </Card>
+                    
+                    <div >
+                    
+                        
                     </div>
                 
             </div>
