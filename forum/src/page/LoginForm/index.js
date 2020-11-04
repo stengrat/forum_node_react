@@ -5,6 +5,8 @@ import {auth} from '../../firebase'
 
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
 
 class LoginForm extends React.Component {
@@ -92,36 +94,76 @@ class LoginForm extends React.Component {
             });
     }
 
-    renderLoggedOut() {
+    renderCreateUser(){
         return (
             <React.Fragment>
-            <NavBar></NavBar>
+            <NavBar></NavBar>            
+           
+            <div  className="image">
+
+                    <Card className="loginForm shadow-lg text-center mx-auto my-5"  style={{ width: '30%' }}>
+                        <Card.Header>
+                            <ButtonGroup aria-label="Basic example">
+                                <Button variant="outline-secondary">Login</Button>
+                                <Button variant="outline-secondary">Registrar</Button>
+                            </ButtonGroup>                    
+                        </Card.Header>
+                        <Card.Body>
+                            <Card.Title className="my-3">Registrar</Card.Title>
+                            <Card.Text>
+                                <Form.Group controlId="formBasicName">
+                                    <Form.Control type="text" placeholder="Nome Completo" name="txtNome" value={this.state.txtNome} onChange={this.onUpdate} />
+                                </Form.Group>
+                                <Form.Group controlId="formBasicEmail">
+                                    <Form.Control type="email" placeholder="E-mail" name="txtEmail" value={this.state.txtEmail} onChange={this.onUpdate} />
+                                </Form.Group>
+                                <Form.Group controlId="formBasicPassword">
+                                    <Form.Control placeholder="Senha" type="password" name="txtPassword" value={this.state.txtPassword} onChange={this.onUpdate}/>
+                                </Form.Group>
+                            </Card.Text>
+                        </Card.Body>
+                        <Card.Body>
+                            <Button variant="success" onClick={this.onCreate}>Criar Conta</Button>
+                        </Card.Body>
+                    </Card>
+                
+            </div>
             
+            </React.Fragment>
+        )
+    }
+
+    renderLoggedOut() {        
+        return (
+            <React.Fragment>
+            <NavBar></NavBar>            
            
             <div  className="image">
                 <div>{this.state.message}</div>
-                
-                    
-                    <div className="loginForm card shadow  ">
-                    
-                        <div className="mb-3 inputLogin ">
-                        
-                            <span glyph="star" className="glyphicon glyphicon-envelope " aria-hidden="true"></span>
-                            <input  placeholder="E-mail" type="email" name="txtEmail" value={this.state.txtEmail} onChange={this.onUpdate} />
-                            
-                            
-                        </div>
-                        <div className="inputLogin">
-                            <input  placeholder="Senha" type="password" name="txtPassword" value={this.state.txtPassword} onChange={this.onUpdate}/>
-                        </div>
-                        <div className="mt-3 ">
-                            <p style={{textAlign: "center"}}>
-                                <input  value="Login" className="btnConfirm botao" type="button" onClick={this.onLogin} />
-                                <input value="Create" className="btnCreate botao botao-second" type="button" onClick={this.onCreate} />
-                                
-                            </p>
-                        </div>
-                    </div>
+
+                    <Card className="loginForm shadow-lg text-center mx-auto my-5"  style={{ width: '30%' }}>
+                        <Card.Header>
+                            <ButtonGroup aria-label="Basic example">
+                                <Button variant="outline-secondary">Login</Button>
+                                <Button variant="outline-secondary" onClick={this.renderCreateUser}>Registrar</Button>
+                            </ButtonGroup>                    
+                        </Card.Header>
+                        <Card.Body>
+                            <Card.Title className="my-3">Login</Card.Title>
+                            <Card.Text>
+                                <Form.Group controlId="formBasicEmail">
+                                    <Form.Control type="email" placeholder="E-mail" name="txtEmail" value={this.state.txtEmail} onChange={this.onUpdate} />
+                                </Form.Group>
+
+                                <Form.Group controlId="formBasicPassword">
+                                    <Form.Control placeholder="Senha" type="password" name="txtPassword" value={this.state.txtPassword} onChange={this.onUpdate}/>
+                                </Form.Group>
+                            </Card.Text>
+                        </Card.Body>
+                        <Card.Body>
+                            <Button variant="success" onClick={this.onLogin}>Realizar Login</Button>
+                        </Card.Body>
+                    </Card>
                 
             </div>
             
