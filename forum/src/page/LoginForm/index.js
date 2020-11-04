@@ -94,11 +94,49 @@ class LoginForm extends React.Component {
             });
     }
 
-    renderLoggedOut() {
+    renderCreateUser(){
         return (
             <React.Fragment>
-            <NavBar></NavBar>
+            <NavBar></NavBar>            
+           
+            <div  className="image">
+
+                    <Card className="loginForm shadow-lg text-center mx-auto my-5"  style={{ width: '30%' }}>
+                        <Card.Header>
+                            <ButtonGroup aria-label="Basic example">
+                                <Button variant="outline-secondary">Login</Button>
+                                <Button variant="outline-secondary">Registrar</Button>
+                            </ButtonGroup>                    
+                        </Card.Header>
+                        <Card.Body>
+                            <Card.Title className="my-3">Registrar</Card.Title>
+                            <Card.Text>
+                                <Form.Group controlId="formBasicName">
+                                    <Form.Control type="text" placeholder="Nome Completo" name="txtNome" value={this.state.txtNome} onChange={this.onUpdate} />
+                                </Form.Group>
+                                <Form.Group controlId="formBasicEmail">
+                                    <Form.Control type="email" placeholder="E-mail" name="txtEmail" value={this.state.txtEmail} onChange={this.onUpdate} />
+                                </Form.Group>
+                                <Form.Group controlId="formBasicPassword">
+                                    <Form.Control placeholder="Senha" type="password" name="txtPassword" value={this.state.txtPassword} onChange={this.onUpdate}/>
+                                </Form.Group>
+                            </Card.Text>
+                        </Card.Body>
+                        <Card.Body>
+                            <Button variant="success" onClick={this.onCreate}>Criar Conta</Button>
+                        </Card.Body>
+                    </Card>
+                
+            </div>
             
+            </React.Fragment>
+        )
+    }
+
+    renderLoggedOut() {        
+        return (
+            <React.Fragment>
+            <NavBar></NavBar>            
            
             <div  className="image">
                 <div>{this.state.message}</div>
@@ -107,7 +145,7 @@ class LoginForm extends React.Component {
                         <Card.Header>
                             <ButtonGroup aria-label="Basic example">
                                 <Button variant="outline-secondary">Login</Button>
-                                <Button variant="outline-secondary">Registrar</Button>
+                                <Button variant="outline-secondary" onClick={this.renderCreateUser}>Registrar</Button>
                             </ButtonGroup>                    
                         </Card.Header>
                         <Card.Body>
@@ -125,21 +163,7 @@ class LoginForm extends React.Component {
                         <Card.Body>
                             <Button variant="success" onClick={this.onLogin}>Realizar Login</Button>
                         </Card.Body>
-
-                        
-
-                        <div className="mt-3" hidden>
-                            <p style={{textAlign: "center"}}>
-                                <input  value="Login" className="btnConfirm botao" type="button"  />
-                                <input value="Create" className="btnCreate botao botao-second" type="button" onClick={this.onCreate} />
-                            </p>
-                        </div>
                     </Card>
-                    
-                    <div >
-                    
-                        
-                    </div>
                 
             </div>
             

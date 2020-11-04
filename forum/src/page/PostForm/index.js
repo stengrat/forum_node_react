@@ -47,7 +47,7 @@ async function addPost(post) {
 }
 
 async function updatePost(post, id){
-    post.uid = id;
+    post.uid = id
     let update = await db.collection("post").doc(id).update({
         userId: "1",
         ...post
