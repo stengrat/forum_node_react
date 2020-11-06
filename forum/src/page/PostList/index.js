@@ -57,7 +57,7 @@ class PostList extends React.Component
                 </div>
                 <div>
                     {posts.map(
-                        p => <Post key={p.id} data={p} />
+                        p => <Post key={p.id} data={p} detail={'card'} />
                     )}
                     
                 </div>

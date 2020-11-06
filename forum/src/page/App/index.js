@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import PostList from "../PostList";
 import PostForm from "../PostForm";
+import PostPage from "../PostPage";
 import {HashRouter as Router, Switch, Route, Link, Redirect} from "react-router-dom";
 import LoginForm from "../LoginForm";
 import {auth} from '../../firebase';
@@ -59,6 +60,7 @@ class App extends React.Component {
                         <PrivateRoute exact path="/posts/:id" component={PostForm} />
                         <Route exact path="/posts" component={PostList}/>
                         <Route exact path="/login" component={LoginForm} />
+                        <Route exact path="/post/:id" component={PostPage}/>
                     </Switch>
                 </Router>
             </div>
