@@ -45,7 +45,7 @@ function ComentarioForm(props){
                     <Form.Text className="text-muted">
                     Escreva o seu Comentário.
                     </Form.Text>
-                    <Button className="mt-5">Adicionar</Button>
+                    <Button variant="info" className="mt-5">Adicionar</Button>
                 </Form.Group>
             </Container>
         </React.Fragment>

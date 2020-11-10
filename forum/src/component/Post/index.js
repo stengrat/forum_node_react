@@ -9,6 +9,7 @@ import Col from 'react-bootstrap/Col'
 import Image from 'react-bootstrap/Image'
 
 import { LinkContainer } from 'react-router-bootstrap'
+import LikeButton from "../LikeButton";
 
 
 function Post(props) {
@@ -19,7 +20,7 @@ function Post(props) {
         let tags = post.tags;
         let tagBadge;
         tagBadge = tags.map((tags) => 
-            <Badge variant="primary" className="ml-1">{tags}</Badge>
+            <Badge variant="info" className="ml-1">{tags}</Badge>
         )
 
         return (
@@ -59,23 +60,45 @@ function Post(props) {
         );
 
     }else if(detail === "post"){
+
+        let tags = post.tags;
+        let tagBadge;
+        tagBadge = tags.map((tags) => 
+            <Badge variant="info" className="ml-1">{tags}</Badge>
+        )
+
         let date = post.data.toDate();
         let date_string = date.toDateString();
+        let n_coments = props.coments
         return(
             <Container>
-                <h2 className="mt-4">{post.title}</h2>
-                <p className="text-muted"> tag1 | tag2</p>
+                <h2 className="mt-4 display-4">{post.title}</h2>
+                <p className="text-muted">{tagBadge}</p>
                 <Row>
-                    <Col xs={12} md={2}>
-                    <Image src="https://www.ernanimelo.pro.br/AdminLTE/dist/img/user.svg" roundedCircle width="80%" height="80%" />
+                    <Col md={1}>
+                    <Image className="ml-3" src="https://www.ernanimelo.pro.br/AdminLTE/dist/img/user.svg" thumbnail width="100%"/>
                     </Col>
-                    <Col xs={6} md={10}>
+                    <Col md={11}>
                     <Card style={{ width: '95%' }} className="shadow mx-1">
-                    <Card.Header><p className="text-muted">Nome do Usuário - {date_string}</p></Card.Header>
                     <Card.Body>
-                        {post.body}
+                        <dl className="row text-muted mb-0 pb-0">
+                            <dt className="col-sm-9">Nome do Usuário</dt>
+                            <dd className="col-sm-3 text-right">{date_string}</dd>
+                        </dl>
                     </Card.Body>
-                    <Card.Footer className="text-muted">Likes {post.like}</Card.Footer>
+                    <hr></hr>
+                    <Card.Body>
+                        <p>
+                            {post.body}
+                        </p>
+                    </Card.Body>
+                    <Card.Footer className="text-muted">
+                        <dl className="row text-muted mb-0 pb-0">
+                            <dd className="col-sm-10 text-right my-auto">Comentários: {n_coments}</dd>
+                            <dd className="col-sm-2 text-right my-auto"><LikeButton></LikeButton></dd>
+                        </dl>
+                        
+                    </Card.Footer>
                     </Card>
                     </Col>
                 </Row>

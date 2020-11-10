@@ -48,7 +48,7 @@ class PostPage extends React.Component
                 <NavBar></NavBar>
                 <Container>
                     {post.map(
-                        p => <Post key={p.id} data={p} detail={'post'} />
+                        p => <Post key={p.id} data={p} detail={'post'} coments={comentarios.length} />
                     )}
                 </Container>
                 <Container>

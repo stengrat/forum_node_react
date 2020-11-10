@@ -11,6 +11,7 @@ import NavBar from '../../component/NavBar';
 import PerfilPage from '../PerfilPage';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Footer from '../../component/Footer';
 
 
 function loggedIn() {
@@ -77,6 +78,7 @@ function Menu(props) {
         <React.Fragment>
             <NavBar></NavBar>
             <PostList></PostList>
+            <Footer></Footer>
         </React.Fragment>
         
         
