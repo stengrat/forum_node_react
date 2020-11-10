@@ -8,6 +8,42 @@ async function listPosts() {
     return await query.get();
 }
 
+async function postById(id) {
+    const query = db.collection("post")
+        .where("uid","==", id);
+    return await query.get();
+}
+
+async function listComentsByPostId(id){
+    const query = db.collection("comentarios")
+        .where("postid", "==", id)
+    return await query.get();
+}
+
+async function listComentarios(id) {
+    let [comentarios] = await Promise.all([
+        listComentsByPostId(id)
+    ]);
+    comentarios = comentarios.docs.map(p => {
+        let {...comentarios} = p.data();
+        return comentarios;
+    });
+
+    return comentarios
+}
+
+async function listPost(id) {
+    let [post] = await Promise.all([
+        postById(id)
+    ]);
+    post = post.docs.map(p => {
+        let {...post} = p.data();
+        return post;
+    });
+
+    return post
+}
+
 async function list() {
     let [users, posts] = await Promise.all([
         axios.get("/users"),
@@ -30,4 +66,4 @@ async function list() {
     return posts;
 }
 
-export default list;
+export {list, listPost, listComentarios};

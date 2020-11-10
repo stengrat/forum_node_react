@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {db} from "../../firebase";
 import Post from "../../component/Post"
-import {Link, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -47,13 +47,14 @@ async function addPost(post) {
 }
 
 async function updatePost(post, id){
+    // TODO - perguntar para professor sobre o tratamento das tags
     post.uid = id
     let update = await db.collection("post").doc(id).update({
         userId: "1",
         ...post
     })
 
-    alert("Update: " + update)
+    alert("Update: " + post.uid)
 }
 
 function PostForm(props) {
@@ -135,7 +136,7 @@ function PostForm(props) {
                 <Col className="col-sm-12 col-md-6">
                     <h3 className="ml-5 pl-5">Preview</h3>
                     <div>
-                        <Post data={{name: "Undefined", ...inputs}} />
+                        <Post data={{name: "Undefined", ...inputs}} detail="preview" />
                     </div>
                 </Col>
             </Row>
