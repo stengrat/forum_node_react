@@ -8,8 +8,10 @@ import {HashRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 import LoginForm from "../LoginForm";
 import {auth} from '../../firebase';
 import NavBar from '../../component/NavBar';
+import PerfilPage from '../PerfilPage';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function loggedIn() {
     return localStorage.reactBlogUid;
@@ -61,6 +63,7 @@ class App extends React.Component {
                         <Route exact path="/posts" component={PostList}/>
                         <Route exact path="/login" component={LoginForm} />
                         <Route exact path="/post/:id" component={PostPage}/>
+                        <Route exact path="/perfil" component={PerfilPage} />
                     </Switch>
                 </Router>
             </div>
