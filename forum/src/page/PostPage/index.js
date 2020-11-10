@@ -5,6 +5,7 @@ import {listPost, listComentarios} from '../../dao';
 import NavBar from '../../component/NavBar';
 
 import Container from 'react-bootstrap/Container'
+import ComentarioForm from '../../component/ComentarioForm';
 
 
 class PostPage extends React.Component
@@ -52,6 +53,9 @@ class PostPage extends React.Component
                 </Container>
                 <Container>
                     {comentario}
+                </Container>
+                <Container className="mt-3">
+                    <ComentarioForm></ComentarioForm>
                 </Container>
 
             </React.Fragment>
