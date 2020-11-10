@@ -37,7 +37,7 @@ class PerfilPage extends React.Component {
                 <NavBar></NavBar>
                 <Container className="mb-5">
                     <div className="">
-                        <div className="card card-profile  shadow mt-5 ">
+                        <div className="card card-profile shadow mt-5 ">
                             
                            
                             <Image src="https://img2.gratispng.com/20180723/evf/kisspng-computer-icons-user-profile-password-login-end-user-5b55c605753eb6.8354409015323479094803.jpg"  className="mx-auto mt-5"  width="25%" height="25%" roundedCircle />
@@ -47,13 +47,17 @@ class PerfilPage extends React.Component {
 
                             <p className="text-center">Programador PHP & JavaScript | HTML & CSS | Home Office </p> 
                             <p className="text-center">Se aventurando em ReactJS , ReactNative e NodeJS AdonisJS </p>
-                            <hr className="mb-5"></hr>
+                            <hr className="mb-2"></hr>
+                            <Button variant="primary" className="mx-auto mb-2" >Editar</Button>
 
                         </div>
-                        <p className="text-center mt-3"><Button variant="primary" >Editar</Button></p>
                     </div>
-                    <Row> 
-                        <Table striped bordered hover>
+                    <Card className="shadow mt-5">
+                        <Card.Body>
+                            <Card.Title className="text-center">
+                                Posts Criados
+                            </Card.Title>
+                            <Table striped bordered hover className="pb-0 mb-0">
                             <thead>
                                 <tr>
                                     <th colSpan="2" className="text-center">#</th>
@@ -76,7 +80,11 @@ class PerfilPage extends React.Component {
                                 </tr>
                             </tbody>
                         </Table>
-                    </Row>
+                        </Card.Body>
+                        
+                    </Card>
+                    
+                    
                 </Container>
             </React.Fragment>
         );
