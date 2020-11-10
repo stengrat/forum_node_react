@@ -1,10 +1,8 @@
 import React from 'react';
-import list from "../../dao";
+import {list} from "../../dao";
 import Post from '../../component/Post';
 
 import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'

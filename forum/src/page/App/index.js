@@ -4,7 +4,7 @@ import './App.css';
 import PostList from "../PostList";
 import PostForm from "../PostForm";
 import PostPage from "../PostPage";
-import {HashRouter as Router, Switch, Route, Link, Redirect} from "react-router-dom";
+import {HashRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 import LoginForm from "../LoginForm";
 import {auth} from '../../firebase';
 import NavBar from '../../component/NavBar';
@@ -66,6 +66,7 @@ class App extends React.Component {
             </div>
         );
     }
+    
 }
 
 function Menu(props) {
@@ -79,5 +80,6 @@ function Menu(props) {
                 
     );
 }
+
 
 export default App;
