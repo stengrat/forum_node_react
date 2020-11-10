@@ -1,7 +1,6 @@
 import React from 'react';
 
 import NavBar from '../../component/NavBar';
-import './Perfil.css';
 import {auth} from '../../firebase'
 
 
