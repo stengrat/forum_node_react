@@ -17,7 +17,7 @@ const NavBar = () => {
                     height="30"
                     className="d-inline-block align-top"
                 />{' '}
-                ForDevs
+                forDevs
             </Navbar.Brand>
             <Navbar.Collapse className="justify-content-end">
                 <LinkContainer to="/posts/new">

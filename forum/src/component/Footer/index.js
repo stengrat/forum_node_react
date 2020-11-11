@@ -1,6 +1,7 @@
 import React from 'react'
-import Navbar from 'react-bootstrap/Navbar'
+import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
+import logo from './4D.png';
 
 import { LinkContainer } from 'react-router-bootstrap'
 
@@ -8,26 +9,36 @@ import './index.css'
 
 const Footer = () => {
     return(
-        <Navbar variant="dark" sticky="bottom" className="footer">
-            <Navbar.Brand href="/" className="mx-5">
-                <img
-                    alt=""
-                    src=""
-                    width="30"
-                    height="30"
-                    className="d-inline-block align-top"
-                />{' '}
-                ForDevs
-            </Navbar.Brand>
-            <Navbar.Collapse className="justify-content-end">
-                <LinkContainer to="/posts/new">
-                    <Button variant="success" className="btn btn-sm mx-1">Novo Post</Button>
-                </LinkContainer>
-                <LinkContainer to="/login">
-                    <Button variant="success" className="btn btn-sm mx-1">Login</Button>
-                </LinkContainer>
-            </Navbar.Collapse>
-        </Navbar>
+        <div className="footer text-white">
+            <Container>
+                <dl className="row">
+                    <dd className="col-sm-4 my-auto">
+                        <p className="lead">Fórum criado para a matéria de <br></br>
+                        Tecnologias Web Prof. Vinicius <br></br>
+                        utilizando ReactJS e Firebase. <br></br>
+                        Download do projeto abaixo</p>
+                    </dd>
+                    <dd className="col-sm-4 text-center">
+                        <h4>Fórum</h4>
+                        <img
+                            alt=""
+                            src={logo}
+                            width="60"
+                            height="60"
+                            className="d-inline-block align-top"
+                        />{' '}
+                        <h3>forDevs</h3>
+                    </dd>
+                    <dt className="col-sm-4 text-right my-auto">
+                        <p>Ricardo Taverna</p>
+                        <p>Ygor Stengrat</p>
+                    </dt>
+                </dl>
+                <hr className="footerline"></hr>
+                <p className="text-center small">Tecnologias Web &copy; 2020 All rights reserved</p>
+                
+            </Container>
+        </div>
     )
 }
 export default Footer;
