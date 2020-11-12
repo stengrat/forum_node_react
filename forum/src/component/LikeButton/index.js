@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Button from 'react-bootstrap/Button';
-
+import { BiHeart } from "react-icons/bi";
 class LikeButton extends React.Component {
 
 state = {
@@ -17,7 +17,7 @@ addLike = () => {
 
 render () {
     return(
-        <Button variant="outline-info" onClick={this.addLike}>Likes: {this.state.likes}</Button>
+        <Button variant="outline-info" onClick={this.addLike}><BiHeart/> {this.state.likes}</Button>
     )
 }
 

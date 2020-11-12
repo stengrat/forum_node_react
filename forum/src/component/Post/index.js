@@ -1,4 +1,6 @@
 import React from "react";
+import { LinkContainer } from 'react-router-bootstrap'
+import LikeButton from "../LikeButton";
 import WrittenBy from "../WrittenBy";
 
 import Card from 'react-bootstrap/Card'
@@ -7,9 +9,9 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Image from 'react-bootstrap/Image'
+import { BiCommentDots } from "react-icons/bi";
 
-import { LinkContainer } from 'react-router-bootstrap'
-import LikeButton from "../LikeButton";
+
 
 
 function Post(props) {
@@ -94,7 +96,7 @@ function Post(props) {
                     </Card.Body>
                     <Card.Footer className="text-muted">
                         <dl className="row text-muted mb-0 pb-0">
-                            <dd className="col-sm-10 text-right my-auto">Comentários: {n_coments}</dd>
+                            <dd className="col-sm-10 text-right my-auto"><BiCommentDots/> {n_coments}</dd>
                             <dd className="col-sm-2 text-right my-auto"><LikeButton></LikeButton></dd>
                         </dl>
                         

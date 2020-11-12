@@ -2,11 +2,13 @@ import React from 'react';
 import './LoginForm.css'
 import NavBar from '../../component/NavBar';
 import {auth} from '../../firebase'
+import Footer from '../../component/Footer';
 
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
+
 
 
 class LoginForm extends React.Component {
@@ -101,34 +103,33 @@ class LoginForm extends React.Component {
            
             <div  className="image">
 
-                    <Card className="loginForm shadow-lg text-center mx-auto my-5"  style={{ width: '30%' }}>
-                        <Card.Header>
-                            <ButtonGroup aria-label="Basic example">
-                                <Button variant="outline-secondary">Login</Button>
-                                <Button variant="outline-secondary">Registrar</Button>
-                            </ButtonGroup>                    
-                        </Card.Header>
-                        <Card.Body>
-                            <Card.Title className="my-3">Registrar</Card.Title>
-                            <Card.Text>
-                                <Form.Group controlId="formBasicName">
-                                    <Form.Control type="text" placeholder="Nome Completo" name="txtNome" value={this.state.txtNome} onChange={this.onUpdate} />
-                                </Form.Group>
-                                <Form.Group controlId="formBasicEmail">
-                                    <Form.Control type="email" placeholder="E-mail" name="txtEmail" value={this.state.txtEmail} onChange={this.onUpdate} />
-                                </Form.Group>
-                                <Form.Group controlId="formBasicPassword">
-                                    <Form.Control placeholder="Senha" type="password" name="txtPassword" value={this.state.txtPassword} onChange={this.onUpdate}/>
-                                </Form.Group>
-                            </Card.Text>
-                        </Card.Body>
-                        <Card.Body>
-                            <Button variant="success" onClick={this.onCreate}>Criar Conta</Button>
-                        </Card.Body>
-                    </Card>
-                
+                <Card className="loginForm shadow-lg text-center mx-auto my-5"  style={{ width: '30%' }}>
+                    <Card.Header>
+                        <ButtonGroup aria-label="Basic example">
+                            <Button variant="outline-secondary">Login</Button>
+                            <Button variant="outline-secondary">Registrar</Button>
+                        </ButtonGroup>                    
+                    </Card.Header>
+                    <Card.Body>
+                        <Card.Title className="my-3">Registrar</Card.Title>
+                        <Card.Text>
+                            <Form.Group controlId="formBasicName">
+                                <Form.Control type="text" placeholder="Nome Completo" name="txtNome" value={this.state.txtNome} onChange={this.onUpdate} />
+                            </Form.Group>
+                            <Form.Group controlId="formBasicEmail">
+                                <Form.Control type="email" placeholder="E-mail" name="txtEmail" value={this.state.txtEmail} onChange={this.onUpdate} />
+                            </Form.Group>
+                            <Form.Group controlId="formBasicPassword">
+                                <Form.Control placeholder="Senha" type="password" name="txtPassword" value={this.state.txtPassword} onChange={this.onUpdate}/>
+                            </Form.Group>
+                        </Card.Text>
+                    </Card.Body>
+                    <Card.Body>
+                        <Button variant="success" onClick={this.onCreate}>Criar Conta</Button>
+                    </Card.Body>
+                </Card>
             </div>
-            
+            <Footer></Footer>
             </React.Fragment>
         )
     }

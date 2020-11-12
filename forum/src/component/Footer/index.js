@@ -1,9 +1,10 @@
 import React from 'react'
-import Container from 'react-bootstrap/Container'
-import Button from 'react-bootstrap/Button'
 import logo from './4D.png';
 
 import { LinkContainer } from 'react-router-bootstrap'
+import Container from 'react-bootstrap/Container'
+import Button from 'react-bootstrap/Button'
+import { FaGithub } from "react-icons/fa";
 
 import './index.css'
 
@@ -17,6 +18,7 @@ const Footer = () => {
                         Tecnologias Web Prof. Vinicius <br></br>
                         utilizando ReactJS e Firebase. <br></br>
                         Download do projeto abaixo</p>
+                        <Button variant="outline-info" target="_blank" href="https://github.com/RicardoTaverna/forum_node_react"><FaGithub/></Button>
                     </dd>
                     <dd className="col-sm-4 text-center">
                         <h4>Fórum</h4>

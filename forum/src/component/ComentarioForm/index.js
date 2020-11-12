@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { db } from '../../firebase';
 
 import Container from 'react-bootstrap/Container';
@@ -31,9 +31,11 @@ function ComentarioForm(props){
     const postid = props.postid
     let {inputs, setInputs, onInputChange} = useInputs({
         body: "",
-        postid: postid
+        postid: postid,
+        userid: 1
     });
 
+    
     return(
         <React.Fragment>
             <Container className="mt-5">
@@ -45,7 +47,7 @@ function ComentarioForm(props){
                     <Form.Text className="text-muted">
                     Escreva o seu Comentário.
                     </Form.Text>
-                    <Button variant="info" className="mt-5">Adicionar</Button>
+                    <Button variant="info" className="mt-5" onClick={() => addComentario(inputs)}>Adicionar</Button>
                 </Form.Group>
             </Container>
         </React.Fragment>
