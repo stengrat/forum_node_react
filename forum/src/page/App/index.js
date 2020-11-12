@@ -12,6 +12,7 @@ import PerfilPage from '../PerfilPage';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RegistroForm from '../RegistroForm';
+import Footer from '../../component/Footer';
 
 
 function loggedIn() {
@@ -79,6 +80,7 @@ function Menu(props) {
         <React.Fragment>
             <NavBar></NavBar>
             <PostList></PostList>
+            <Footer></Footer>
         </React.Fragment>
         
         
@@ -88,3 +90,4 @@ function Menu(props) {
 
 
 export default App;
+

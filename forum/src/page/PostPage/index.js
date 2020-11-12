@@ -3,8 +3,10 @@ import Post from '../../component/Post';
 import Comentario from '../../component/Comentario';
 import {listPost, listComentarios} from '../../dao';
 import NavBar from '../../component/NavBar';
+import Footer from '../../component/Footer';
 
 import Container from 'react-bootstrap/Container'
+import ComentarioForm from '../../component/ComentarioForm';
 
 
 class PostPage extends React.Component
@@ -38,7 +40,7 @@ class PostPage extends React.Component
                 c => <Comentario key={c.id} data={c} />
             )
         }else{
-            comentario = <p>Ainda não há comentários nesse post. Seja o primeiro a comentar!</p>
+            comentario = <h4 className="text-center mt-5 mb-5">Ainda não há comentários nesse post. Seja o primeiro a comentar!</h4>
         }
         
        
@@ -47,13 +49,16 @@ class PostPage extends React.Component
                 <NavBar></NavBar>
                 <Container>
                     {post.map(
-                        p => <Post key={p.id} data={p} detail={'post'} />
+                        p => <Post key={p.id} data={p} detail={'post'} coments={comentarios.length} />
                     )}
                 </Container>
                 <Container>
                     {comentario}
                 </Container>
-
+                <Container className="mt-3">
+                    <ComentarioForm></ComentarioForm>
+                </Container>
+                <Footer></Footer>
             </React.Fragment>
             
         )
