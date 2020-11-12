@@ -11,6 +11,7 @@ import NavBar from '../../component/NavBar';
 import PerfilPage from '../PerfilPage';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import RegistroForm from '../RegistroForm';
 import Footer from '../../component/Footer';
 
 
@@ -65,6 +66,7 @@ class App extends React.Component {
                         <Route exact path="/login" component={LoginForm} />
                         <Route exact path="/post/:id" component={PostPage}/>
                         <Route exact path="/perfil" component={PerfilPage} />
+                        <Route exact path="/registro" component={RegistroForm} />
                     </Switch>
                 </Router>
             </div>
@@ -88,3 +90,4 @@ function Menu(props) {
 
 
 export default App;
+
