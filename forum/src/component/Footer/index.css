@@ -1,0 +1,11 @@
+.footer {
+    background-image: url("./footer-background.png");
+    margin-top: 7rem;
+    padding-top: 7rem;
+    padding-bottom: 3rem;
+
+}
+
+.footerline {
+    border-color: white;
+}

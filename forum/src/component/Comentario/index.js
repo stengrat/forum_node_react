@@ -16,16 +16,26 @@ function Comentario(props) {
     return (
         <Container className="mt-3 mb-3">
             <Row>
-                <Col xs={12} md={2}>
-                <Image src="https://i.imgur.com/OptLhyI.jpg" roundedCircle width="80%" height="80%" />
+                <Col md={1}>
+                <Image className="ml-3" src="https://i.imgur.com/OptLhyI.jpg" thumbnail width="100%"/>
                 </Col>
-                <Col xs={6} md={10}>
+                <Col md={11}>
                 <Card style={{ width: '95%' }} className="shadow mx-1">
-                    <Card.Header><p className="text-muted">Nome do Usuário - </p></Card.Header>
                     <Card.Body>
-                        {comentario.body}
+                        <dl className="row text-muted mb-0 pb-0">
+                            <dt className="col-sm-9">Nome do Usuário</dt>
+                            <dd className="col-sm-3 text-right">data vai aqui</dd>
+                        </dl>
                     </Card.Body>
-                    <Card.Footer className="text-muted">Likes {comentario.like}</Card.Footer>
+                    <hr></hr>
+                    <Card.Body>
+                        <p>
+                            {comentario.body}
+                        </p>
+                    </Card.Body>
+                    <Card.Footer className="text-muted">
+                        Likes {comentario.like}
+                    </Card.Footer>
                 </Card>
                 </Col>
             </Row>
