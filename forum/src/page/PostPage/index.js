@@ -42,7 +42,7 @@ class PostPage extends React.Component
         }else{
             comentario = <h4 className="text-center mt-5 mb-5">Ainda não há comentários nesse post. Seja o primeiro a comentar!</h4>
         }
-        
+        let id = this.props.match.params.id;
        
         return(
             <React.Fragment>
@@ -56,7 +56,7 @@ class PostPage extends React.Component
                     {comentario}
                 </Container>
                 <Container className="mt-3">
-                    <ComentarioForm></ComentarioForm>
+                    <ComentarioForm postid={id}></ComentarioForm>
                 </Container>
                 <Footer></Footer>
             </React.Fragment>

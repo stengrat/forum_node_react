@@ -21,7 +21,9 @@ function useInputs(initialState = {}){
 }
 
 async function addComentario(comentario){
+    console.log(comentario.postid)
     let added = await db.collection("comentarios").add({
+        userid: 1,
         ...comentario
     })
     alert("Adicionado: " + added.id);
@@ -32,7 +34,7 @@ function ComentarioForm(props){
     let {inputs, setInputs, onInputChange} = useInputs({
         body: "",
         postid: postid,
-        userid: 1
+        like: 0
     });
 
     

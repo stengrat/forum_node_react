@@ -20,12 +20,6 @@ class PerfilPage extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            user: null,
-            txtEmail: "",
-            txtPassword: "",
-            message: "."
-        }
     }
 
     renderPerfilPage() {
