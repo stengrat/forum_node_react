@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './LoginForm.css'
 import NavBar from '../../component/NavBar';
 import {auth} from '../../firebase'
@@ -19,7 +19,7 @@ class LoginForm extends React.Component {
 
     constructor(props) {
         super(props);
-
+        
         this.state = {
             user: null,
             txtEmail: "",
@@ -30,9 +30,14 @@ class LoginForm extends React.Component {
         this.onLogin = this.onLogin.bind(this);
     }
 
+
     renderLoggedIn() {
+        let {user} = this.state;
+
         return (
-            <PerfilPage></PerfilPage>
+            <div>
+                {`Bem vindo ${user.email}`}
+            </div>
         );
     }
 
@@ -48,18 +53,23 @@ class LoginForm extends React.Component {
         auth.signInWithEmailAndPassword(txtEmail, txtPassword)
             .then(response => {
                 let {user} = response;
-                console.log(JSON.stringify(user));
+                console.log('tentando logar')
                 if (!user.emailVerified) {
                     this.setState({message: "Seu e-mail ainda não foi verificado!"});
+                    console.log(this.state.message)
                     return;
                 }
+                
             }).catch(err => {
                 this.setState({message: JSON.stringify(err)});
+                console.log(this.state.message)
             });
     }
 
-    renderLoggedOut() {        
+    renderLoggedOut() { 
+
         return (
+            
             <React.Fragment>
             <NavBar></NavBar>            
            
@@ -82,16 +92,13 @@ class LoginForm extends React.Component {
                                     <Form.Group controlId="formBasicEmail">
                                         <Form.Control type="email" placeholder="E-mail" name="txtEmail" value={this.state.txtEmail} onChange={this.onUpdate} />
                                     </Form.Group>
-
                                     <Form.Group controlId="formBasicPassword">
                                         <Form.Control placeholder="Senha" type="password" name="txtPassword" value={this.state.txtPassword} onChange={this.onUpdate}/>
                                     </Form.Group>
                                 </Card.Text>
                             </Card.Body>
                             <Card.Body>
-                            <LinkContainer to="/perfil">
-                                <Button variant="success" onClick={this.onLogin}>Realizar Login</Button>
-                            </LinkContainer>
+                                <Button variant="success" onClick={this.onLogin()}>Realizar Login</Button>
                             </Card.Body>
                         </Card>
                     </div>

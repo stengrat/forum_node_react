@@ -27,7 +27,6 @@ class RegistroForm extends React.Component {
             message: "."
         }
         this.onUpdate = this.onUpdate.bind(this);
-        this.onLogin = this.onLogin.bind(this);
         this.onCreate = this.onCreate.bind(this);
     }
 
@@ -39,32 +38,6 @@ class RegistroForm extends React.Component {
         this.setState(obj)
     }
 
-    onLogin() {
-        let {txtEmail, txtPassword} = this.state;
-
-        auth.signInWithEmailAndPassword(txtEmail, txtPassword)
-            .then(response => {
-                let {user} = response;
-                console.log(JSON.stringify(user));
-                if (!user.emailVerified) {
-                    this.setState({message: "Seu e-mail ainda não foi verificado!"});
-                    return;
-                }
-
-                this.setState({
-                    user: {
-                        name: user.displayName,
-                        email: user.email,
-                        photo: user.photoURL,
-                        emailVerified: user.emailVerified,
-                        uid: user.uid
-                    }
-                });
-            }).catch(err => {
-                this.setState({message: JSON.stringify(err)});
-            });
-    }
-
     onCreate() {
         let {txtEmail, txtPassword, txtNome, txtSobrenome, txtUsername, txtNascimento, txtGithub} = this.state;
 
@@ -72,18 +45,22 @@ class RegistroForm extends React.Component {
             .then( response => {
                 auth.currentUser.sendEmailVerification().then(() => {
                     let {user} = response;
-                    console.log(user)
-                    db.collection("usuarios").add({
-                        nome: txtNome,
-                        sobrenome: txtSobrenome,
-                        displayName: txtUsername,
-                        nascimento: txtNascimento,
-                        github: txtGithub,
-                        uid: user.uid,
-                        email: user.email,
-                        phoneNumber: user.phoneNumber,
-                        photoURL: user.photoURL,
-                        biografia: ""
+                    user.updateProfile({
+                        displayName: txtUsername
+                    }).then(() => {
+                        console.log(user)
+                        db.collection("usuarios").add({
+                            nome: txtNome,
+                            sobrenome: txtSobrenome,
+                            displayName: txtUsername,
+                            nascimento: txtNascimento,
+                            github: txtGithub,
+                            uid: user.uid,
+                            email: user.email,
+                            phoneNumber: user.phoneNumber,
+                            photoURL: user.photoURL,
+                            biografia: ""
+                        })
                     })
                     this.setState({message: "Usuário criado! Verifique seu e-mail!"});
                 }).catch(() => {
@@ -100,7 +77,7 @@ class RegistroForm extends React.Component {
             <React.Fragment>
             <NavBar></NavBar>            
            
-            <div  className="image">
+            <div className="image">
                 <Container className="d-flex align-itens-center justify-content-center" style={{ minHeight: "100vh" }}>
                     <div className="w-100" style={{ maxWidth: "400px" }}>
                         <Card className="loginForm shadow-lg text-center mx-auto my-5 mb-5">

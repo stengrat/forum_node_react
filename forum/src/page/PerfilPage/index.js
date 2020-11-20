@@ -19,12 +19,11 @@ class PerfilPage extends React.Component {
 
     constructor(props) {
         super(props);
-
     }
 
     renderPerfilPage() {
-       
-
+        let displayName = this.props.match.params.displayName;
+        
         return (
             <React.Fragment>
                 <NavBar></NavBar>
@@ -35,9 +34,8 @@ class PerfilPage extends React.Component {
                            
                             <Image src="https://img2.gratispng.com/20180723/evf/kisspng-computer-icons-user-profile-password-login-end-user-5b55c605753eb6.8354409015323479094803.jpg"  className="mx-auto mt-5"  width="25%" height="25%" roundedCircle />
                             
-                            <h1 className="mt-5 text-center">João Alves</h1>
+                            <h1 className="mt-5 text-center"></h1>
                             <p className="text-center">Curitiba - Parana</p>
-
                             <p className="text-center">Programador PHP & JavaScript | HTML & CSS | Home Office </p> 
                             <p className="text-center">Se aventurando em ReactJS , ReactNative e NodeJS AdonisJS </p>
                             <hr className="mb-2"></hr>
