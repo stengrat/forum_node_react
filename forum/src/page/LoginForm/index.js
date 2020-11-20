@@ -56,13 +56,11 @@ class LoginForm extends React.Component {
                 console.log('tentando logar')
                 if (!user.emailVerified) {
                     this.setState({message: "Seu e-mail ainda não foi verificado!"});
-                    console.log(this.state.message)
                     return;
                 }
                 
             }).catch(err => {
                 this.setState({message: JSON.stringify(err)});
-                console.log(this.state.message)
             });
     }
 
