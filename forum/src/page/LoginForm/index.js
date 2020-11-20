@@ -96,7 +96,7 @@ class LoginForm extends React.Component {
                                 </Card.Text>
                             </Card.Body>
                             <Card.Body>
-                                <Button variant="success" onClick={this.onLogin()}>Realizar Login</Button>
+                                <Button variant="success" onClick={this.onLogin}>Realizar Login</Button>
                             </Card.Body>
                         </Card>
                     </div>
