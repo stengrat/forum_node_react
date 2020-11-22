@@ -21,10 +21,11 @@ class LoginForm extends React.Component {
         super(props);
         
         this.state = {
-            user: null,
+            user: "",
             txtEmail: "",
             txtPassword: "",
-            message: "."
+            message: ".",
+            uid: ""
         }
         this.onUpdate = this.onUpdate.bind(this);
         this.onLogin = this.onLogin.bind(this);
@@ -32,12 +33,10 @@ class LoginForm extends React.Component {
 
 
     renderLoggedIn() {
-        let {user} = this.state;
+        let uid = this.state.uid;
 
         return (
-            <div>
-                {`Bem vindo ${user.email}`}
-            </div>
+            <PerfilPage userid = {uid}></PerfilPage>
         );
     }
 
@@ -53,14 +52,18 @@ class LoginForm extends React.Component {
         auth.signInWithEmailAndPassword(txtEmail, txtPassword)
             .then(response => {
                 let {user} = response;
-                console.log('tentando logar')
                 if (!user.emailVerified) {
                     this.setState({message: "Seu e-mail ainda não foi verificado!"});
+                    alert(this.state.message)
                     return;
                 }
-                
+                this.setState({
+                    user: user,
+                    uid: user.uid
+                })
             }).catch(err => {
                 this.setState({message: JSON.stringify(err)});
+                alert(this.state.message)
             });
     }
 
@@ -110,6 +113,7 @@ class LoginForm extends React.Component {
     render() {
         const {user} = this.state;
         return user ? this.renderLoggedIn() : this.renderLoggedOut();
+        
     }
 }
 

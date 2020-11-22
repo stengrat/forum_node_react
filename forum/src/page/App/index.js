@@ -48,7 +48,7 @@ class App extends React.Component {
                 localStorage.removeItem("reactBlobUEmail");
                 return;
             }
-
+            localStorage.user = {user};
             localStorage.reactBlogUid = user.uid;
             localStorage.reactBlogUDisplayName = user.displayName;
             localStorage.reactBlobUEmail = user.email;
@@ -61,12 +61,12 @@ class App extends React.Component {
                 <Router>
                     <Switch>
                         <Route exact path="/" component={Menu} />
-                        <PrivateRoute exact path="/posts/:id" component={PostForm} />
                         <Route exact path="/posts" component={PostList}/>
-                        <Route exact path="/login" component={LoginForm} />
+                        <PrivateRoute exact path="/posts/:id" component={PostForm} />
                         <Route exact path="/post/:id" component={PostPage}/>
-                        <PrivateRoute exact path="/perfil/:displayName" component={PerfilPage} />
+                        <Route exact path="/login" component={LoginForm} />
                         <Route exact path="/registro" component={RegistroForm} />
+                        <PrivateRoute exact path="/perfil/:displayName" component={PerfilPage} />
                     </Switch>
                 </Router>
             </div>

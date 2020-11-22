@@ -11,6 +11,7 @@ import Form from 'react-bootstrap/Form'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
+import Alert from 'react-bootstrap/Alert'
 
 import { LinkContainer } from 'react-router-bootstrap'
 
@@ -46,7 +47,8 @@ class RegistroForm extends React.Component {
                 auth.currentUser.sendEmailVerification().then(() => {
                     let {user} = response;
                     user.updateProfile({
-                        displayName: txtUsername
+                        displayName: txtUsername,
+                        photoURL: "https://robohash.org/"+ user.txtEmail +".png"
                     }).then(() => {
                         console.log(user)
                         db.collection("usuarios").add({
@@ -58,17 +60,20 @@ class RegistroForm extends React.Component {
                             uid: user.uid,
                             email: user.email,
                             phoneNumber: user.phoneNumber,
-                            photoURL: user.photoURL,
+                            photoURL: "https://robohash.org/"+ user.email +".png",
                             biografia: ""
                         })
+                        
                     })
                     this.setState({message: "Usuário criado! Verifique seu e-mail!"});
+                    alert(this.state.message)
                 }).catch(() => {
                     this.setState({message: "Não foi possível enviar o e-mail de verificação."});
+                    alert(this.state.message)
                 })
             }).catch(err => {
                 this.setState({message: err.message});
-
+                alert(this.state.message)
         });
     }
 
@@ -114,7 +119,10 @@ class RegistroForm extends React.Component {
                                         <Form.Control placeholder="Senha" type="password" name="txtPassword" value={this.state.txtPassword} onChange={this.onUpdate}/>
                                     </Form.Group>
                                     <Form.Group controlId="formGithub">
-                                        <Form.Control placeholder="Conta do Github" type="email" name="txtGithub" value={this.state.txtGithub} onChange={this.onUpdate}/>
+                                        <Form.Control placeholder="github.com/" type="email" name="txtGithub" value={this.state.txtGithub} onChange={this.onUpdate}/>
+                                        <Form.Text className="text-muted text-left text-small">
+                                            Adicione apenas seu usuario do github
+                                        </Form.Text>
                                     </Form.Group>
                                     <Form.Group controlId="formNascimento">
                                         <Form.Control placeholder="Data de Nascimento" type="date" name="txtNascimento" value={this.state.txtNascimento} onChange={this.onUpdate}/>
