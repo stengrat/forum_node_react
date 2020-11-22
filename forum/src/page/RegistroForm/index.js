@@ -42,30 +42,36 @@ class RegistroForm extends React.Component {
     onCreate() {
         let {txtEmail, txtPassword, txtNome, txtSobrenome, txtUsername, txtNascimento, txtGithub} = this.state;
 
+        let robotType = [
+            '?set=set1','?set=set2', '?set=set3', '?set=set4', '?set=set5'
+        ];
+        let randomRobot = robotType[Math.floor(Math.random()*robotType.length)];
+        console.log(randomRobot)
+
         auth.createUserWithEmailAndPassword(txtEmail, txtPassword)
             .then( response => {
                 auth.currentUser.sendEmailVerification().then(() => {
                     let {user} = response;
                     user.updateProfile({
                         displayName: txtUsername,
-                        photoURL: "https://robohash.org/"+ user.txtEmail +".png"
+                        photoURL: "https://robohash.org/"+ user.email + randomRobot
                     }).then(() => {
-                        console.log(user)
-                        db.collection("usuarios").add({
+                        console.log(user.uid)
+                        db.collection("usuarios").doc(user.uid).set({
                             nome: txtNome,
                             sobrenome: txtSobrenome,
-                            displayName: txtUsername,
+                            displayName: user.displayName,
                             nascimento: txtNascimento,
                             github: txtGithub,
                             uid: user.uid,
                             email: user.email,
                             phoneNumber: user.phoneNumber,
-                            photoURL: "https://robohash.org/"+ user.email +".png",
+                            photoURL: user.photoURL,
                             biografia: ""
                         })
                         
                     })
-                    this.setState({message: "Usuário criado! Verifique seu e-mail!"});
+                    this.setState({message: "Usuário " + txtUsername + " criado! Verifique seu e-mail!"});
                     alert(this.state.message)
                 }).catch(() => {
                     this.setState({message: "Não foi possível enviar o e-mail de verificação."});

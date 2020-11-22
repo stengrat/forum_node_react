@@ -26,7 +26,7 @@ async function updateUsuario(info, id){
     let added = await db.collection("usuarios").doc(id).update({
         ...info
     })
-    alert("Usuario: " + added.username + " atualizado");
+    alert("Usuario: " + added.displayName + " atualizado");
 }
 
 function PerfilForm(props){
@@ -43,11 +43,9 @@ function PerfilForm(props){
     useEffect(() => {
         // trocar params por props
         const {uid} = auth.currentUser;
-        console.log(uid)
         db.collection("usuarios")
-            .where("uid", "==", uid).get().then(data => {
-                let usuario = data.metadata;
-                console.log(usuario)
+            .doc(uid).get().then(data => {
+                let usuario = data.data();
                 if (usuario) setInputs(usuario);
             });
     }, []);
@@ -56,18 +54,20 @@ function PerfilForm(props){
         <React.Fragment>
             <Container className="mt-5">
             <hr></hr>
-                <h2>Adicionar Comentário</h2>
+                <h2 className="mb-3">Atualizar cadastro</h2>
                 <Form.Group controlId="formGithub">
                     <Form.Control placeholder="URL da sua foto" type="txt" name="photoURL" value={inputs.photoURL} onChange={onInputChange}/>
                 </Form.Group>
                 <Row>
                     <Col>
                         <Form.Group controlId="formBasicName">
+                            <Form.Label>Nome</Form.Label>
                             <Form.Control type="text" placeholder="Nome" name="nome" value={inputs.nome} onChange={onInputChange} /> 
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group controlId="formBasicSobrenome">
+                        <Form.Label>Email address</Form.Label>
                             <Form.Control  type="text" placeholder="Sobrenome" name="sobrenome" value={inputs.sobrenome} onChange={onInputChange} /> 
                         </Form.Group>
                     </Col>
@@ -79,9 +79,9 @@ function PerfilForm(props){
                     <Form.Control placeholder="Data de Nascimento" type="date" name="nascimento" value={inputs.nascimento} onChange={onInputChange}/>
                 </Form.Group>
                 <Form.Group controlId="formBiografia">
-                    <Form.Control as="textarea" rows={5} placeholder="Biografia..." name="biograia" value={inputs.biograia} onChange={onInputChange}/>
+                    <Form.Control as="textarea" rows={5} placeholder="Biografia..." name="biografia" value={inputs.biografia} onChange={onInputChange}/>
                 </Form.Group>
-                <Button variant="info" className="mt-5" onClick={() => updateUsuario(inputs, id)}>Atualizar</Button>
+                <Button variant="info" className="mt-3 mb-3" onClick={() => updateUsuario(inputs, id)}>Atualizar</Button>
             </Container>
         </React.Fragment>
     )

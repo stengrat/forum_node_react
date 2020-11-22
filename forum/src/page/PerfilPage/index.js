@@ -86,6 +86,7 @@ class PerfilPage extends React.Component {
         let {uid} = auth.currentUser;
 
         const perfilForm = <PerfilForm id={uid}></PerfilForm>
+        const perfilTable = ""
 
         return (
             <React.Fragment>
@@ -110,14 +111,14 @@ class PerfilPage extends React.Component {
                                         <h5><RiCalendarTodoFill/> {nascimento}</h5>
                                         <hr></hr>
                                         <h5><RiQuillPenLine/></h5>
-                                        <p>{biografia}</p>
+                                        <p className="text-muted">{biografia}</p>
                                     </div>
                                     
                                     
                                 </Col>
                             </Row>
                             <hr className="mb-2"></hr>                            
-                            <Button variant="primary" className="mx-auto mb-2" onClick={this.toogleDiv} >Editar</Button>
+                            <Button variant="outline-info" className="mx-auto mb-2" onClick={this.toogleDiv} >Atualizar Perfil</Button>
                             <div style={cardStyle}>
                                 {perfilForm}
                             </div>
