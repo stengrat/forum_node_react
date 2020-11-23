@@ -1,9 +1,11 @@
 import React, {useEffect} from 'react';
 import './LoginForm.css'
 import NavBar from '../../component/NavBar';
-import {auth} from '../../firebase'
+import {auth} from '../../firebase';
+import {listUsuario} from '../../dao';
 import Footer from '../../component/Footer';
 import PerfilPage from '../../page/PerfilPage';
+import swal from 'sweetalert';
 
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
@@ -31,6 +33,20 @@ class LoginForm extends React.Component {
         this.onLogin = this.onLogin.bind(this);
     }
 
+    componentDidMount(){
+        if(auth.currentUser){
+            let {uid} = auth.currentUser;
+            
+            listUsuario(uid).then(user => {
+                this.setState({ user: user })
+            })
+            this.setState({
+                uid: uid
+            })
+            
+        }
+    }
+
 
     renderLoggedIn() {
         let uid = this.state.uid;
@@ -54,7 +70,7 @@ class LoginForm extends React.Component {
                 let {user} = response;
                 if (!user.emailVerified) {
                     this.setState({message: "Seu e-mail ainda não foi verificado!"});
-                    alert(this.state.message)
+                    swal(this.state.message)
                     return;
                 }
                 this.setState({
@@ -63,7 +79,7 @@ class LoginForm extends React.Component {
                 })
             }).catch(err => {
                 this.setState({message: JSON.stringify(err)});
-                alert(this.state.message)
+                swal(this.state.message)
             });
     }
 
@@ -99,20 +115,19 @@ class LoginForm extends React.Component {
                                 </Card.Text>
                             </Card.Body>
                             <Card.Body>
-                                <Button variant="success" onClick={this.onLogin}>Realizar Login</Button>
+                                <Button variant="info" onClick={this.onLogin}>Realizar Login</Button>
                             </Card.Body>
                         </Card>
                     </div>
                 </Container>
             </div>
-            
+            <Footer></Footer>
             </React.Fragment>
         )
     }
 
     render() {
-        const {user} = this.state;
-        return user ? this.renderLoggedIn() : this.renderLoggedOut();
+        return this.state.user ? this.renderLoggedIn() : this.renderLoggedOut();
         
     }
 }

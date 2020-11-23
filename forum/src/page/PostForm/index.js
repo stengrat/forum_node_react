@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import {db} from "../../firebase";
+import {db, auth} from "../../firebase";
 import Post from "../../component/Post"
 import {useParams} from "react-router-dom";
+import { LinkContainer } from 'react-router-bootstrap'
+import swal from 'sweetalert';
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -10,7 +12,6 @@ import Form from 'react-bootstrap/Form'
 import NavBar from '../../component/NavBar';
 import Button from 'react-bootstrap/Button'
 
-import { LinkContainer } from 'react-router-bootstrap'
 
 function useInputs(initialState = {}) {
     const [inputs, setInputs] = useState(initialState);
@@ -31,33 +32,37 @@ function useInputs(initialState = {}) {
 
 async function addPost(post) {
     post.tags = post.tags.split(" ");
+    let {uid} = auth.currentUser;
 
     let added = await db.collection("post").add({
-        userId: "1",
+        userId: uid,
         ...post
     });
-    alert("Adicionado: " + added.id);
+    swal("Adicionado post ", added.title, "success");
 
     post.uid = added.id;
 
     await db.collection("post").doc(added.id).update({
-        userId: "1",
+        userId: uid,
         ...post
     })
 }
 
 async function updatePost(post, id){
-    // TODO - perguntar para professor sobre o tratamento das tags
+    let {uid} = auth.currentUser;
+
     post.uid = id
     let update = await db.collection("post").doc(id).update({
-        userId: "1",
+        userId: uid,
         ...post
     })
 
-    alert("Update: " + post.uid)
+    alert("Atualizado: " + post.uid)
 }
 
 function PostForm(props) {
+
+    let data = new Date();
     let params = useParams();
     let {id} = params
     let {inputs, setInputs, onInputChange} = useInputs(
@@ -65,6 +70,7 @@ function PostForm(props) {
             title: "",
             body: "",
             tags: "",
+            data: data.toLocaleDateString(),
             uid: id
         }
     );

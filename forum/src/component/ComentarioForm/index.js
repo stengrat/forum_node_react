@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { db } from '../../firebase';
+import React, { useState } from 'react';
+import { db, auth } from '../../firebase';
+import swal from 'sweetalert';
 
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -21,20 +22,23 @@ function useInputs(initialState = {}){
 }
 
 async function addComentario(comentario){
+    let {uid} = auth.currentUser;
     console.log(comentario.postid)
     let added = await db.collection("comentarios").add({
-        userid: 1,
+        userid: uid,
         ...comentario
     })
-    alert("Adicionado: " + added.id);
+    swal("Adicionado: " + added.id, "", "success");
 }
 
 function ComentarioForm(props){
+    let data = new Date();
     const postid = props.postid
     let {inputs, setInputs, onInputChange} = useInputs({
         body: "",
         postid: postid,
-        like: 0
+        like: 0,
+        data: data.toLocaleDateString()
     });
 
     

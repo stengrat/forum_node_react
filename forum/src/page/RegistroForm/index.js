@@ -1,19 +1,17 @@
 import React from 'react';
-
 import NavBar from '../../component/NavBar';
-import {auth, db} from '../../firebase'
+import Footer from '../../component/Footer';
+import {auth, db} from '../../firebase';
+import swal from 'sweetalert';
+import { LinkContainer } from 'react-router-bootstrap';
 
-
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
-import Container from 'react-bootstrap/Container'
-import Form from 'react-bootstrap/Form'
-import ButtonGroup from 'react-bootstrap/ButtonGroup'
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
-import Alert from 'react-bootstrap/Alert'
-
-import { LinkContainer } from 'react-router-bootstrap'
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 
 class RegistroForm extends React.Component {
@@ -71,15 +69,15 @@ class RegistroForm extends React.Component {
                         })
                         
                     })
-                    this.setState({message: "Usuário " + txtUsername + " criado! Verifique seu e-mail!"});
-                    alert(this.state.message)
+                    this.setState({message: "Usuário " + txtUsername + " criado!"});
+                    swal(this.state.message, "Verifique seu e-mail!", "success")
                 }).catch(() => {
                     this.setState({message: "Não foi possível enviar o e-mail de verificação."});
-                    alert(this.state.message)
+                    swal(this.state.message)
                 })
             }).catch(err => {
                 this.setState({message: err.message});
-                alert(this.state.message)
+                swal(this.state.message)
         });
     }
 
@@ -136,21 +134,18 @@ class RegistroForm extends React.Component {
                                 </Card.Text>
                             </Card.Body>
                             <Card.Body>
-                                <Button variant="success" onClick={this.onCreate}>Criar Conta</Button>
+                                <Button variant="info" onClick={this.onCreate}>Criar Conta</Button>
                             </Card.Body>
                         </Card>
                     </div>
                 </Container>
             </div>
-            
+            <Footer></Footer>
             </React.Fragment>
         )
     }
 
-
-
     render() {
-        const {user} = this.state;
         return  this.renderCreateUser();
     }
 }

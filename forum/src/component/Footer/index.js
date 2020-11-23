@@ -1,7 +1,6 @@
 import React from 'react'
 import logo from './4D.png';
 
-import { LinkContainer } from 'react-router-bootstrap'
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import { FaGithub } from "react-icons/fa";

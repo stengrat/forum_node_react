@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import NavBar from '../../component/NavBar';
 import PerfilForm from '../../component/perfilForm';
 import {auth} from '../../firebase';
 import {listUsuario} from '../../dao';
 import { RiLogoutBoxLine, RiGithubFill, RiMailLine, RiQuillPenLine, RiCalendarTodoFill } from "react-icons/ri";
+import swal from 'sweetalert';
 
 import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
@@ -37,7 +38,7 @@ class PerfilPage extends React.Component {
     
     loginOut(){
         auth.signOut().then(
-            alert('Realizado logout')
+            swal('Realizado logout', "Volte mais vezes e compartilhe conhecimento", "info")
         )
     }
 
@@ -76,8 +77,6 @@ class PerfilPage extends React.Component {
                 photoURL = user.photoURL;
            }
         )
-
-        console.log(this.state.user)
 
         let cardStyle = {
             display: this.state.hidden

@@ -13,17 +13,17 @@ class PostPage extends React.Component
 {
     state = {
         post: [],
-        comentarios: []
+        comentarios: [],
     }
 
     componentDidMount(){
         let id = this.props.match.params.id;
         listPost(id).then(post => {
-            console.log(post)
-            this.setState({ post: post })
+            this.setState({ 
+                post: post
+            })
         });
         listComentarios(id).then(comentarios => {
-            console.log(comentarios)
             this.setState({ comentarios: comentarios })
         })
         
@@ -37,7 +37,7 @@ class PostPage extends React.Component
         let comentario = ""
         if(comentarios.length > 0){
             comentario = comentarios.map(
-                c => <Comentario key={c.id} data={c} />
+                c => <Comentario key={c.id} data={c} userid={c.userid}/>
             )
         }else{
             comentario = <h4 className="text-center mt-5 mb-5">Ainda não há comentários nesse post. Seja o primeiro a comentar!</h4>
@@ -49,7 +49,7 @@ class PostPage extends React.Component
                 <NavBar></NavBar>
                 <Container>
                     {post.map(
-                        p => <Post key={p.id} data={p} detail={'post'} coments={comentarios.length} />
+                        p => <Post key={p.id} data={p} detail={'post'} coments={comentarios.length} userid={p.userId}/>
                     )}
                 </Container>
                 <Container>
