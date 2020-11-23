@@ -3,17 +3,19 @@ import React from 'react';
 import NavBar from '../../component/NavBar';
 import PerfilForm from '../../component/perfilForm';
 import {auth} from '../../firebase';
-import {listUsuario} from '../../dao';
+import {listPostsbyUser, listUsuario} from '../../dao';
 import { RiLogoutBoxLine, RiGithubFill, RiMailLine, RiQuillPenLine, RiCalendarTodoFill } from "react-icons/ri";
+import TablePost from '../../component/TablePost';
 import swal from 'sweetalert';
 
 import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
-import Table from 'react-bootstrap/Table';
-import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Table from 'react-bootstrap/Table';
+import Card from 'react-bootstrap/Card';
+
 
 class PerfilPage extends React.Component {
 
@@ -23,7 +25,8 @@ class PerfilPage extends React.Component {
         this.state = {
             userid: userid,
             user: [],
-            hidden: 'none'
+            hidden: 'none',
+            post: []
         }
         
         this.toogleDiv = this.toogleDiv.bind(this);
@@ -34,6 +37,10 @@ class PerfilPage extends React.Component {
         listUsuario(this.state.userid).then(user => {
             this.setState({ user: user })
         });
+        listPostsbyUser(this.state.userid).then(post => {
+            this.setState({ post: post})
+            console.log(post)
+        })
     }
     
     loginOut(){
@@ -85,7 +92,8 @@ class PerfilPage extends React.Component {
         let {uid} = auth.currentUser;
 
         const perfilForm = <PerfilForm id={uid}></PerfilForm>
-        const perfilTable = ""
+        
+        let {post} = this.state
 
         return (
             <React.Fragment>
@@ -123,38 +131,27 @@ class PerfilPage extends React.Component {
                             </div>
                         </div>
                     </div>
+
                     <Card className="shadow mt-5">
                         <Card.Body>
                             <Card.Title className="text-center">
                                 Posts Criados
                             </Card.Title>
                             <Table striped bordered hover className="pb-0 mb-0">
-                            <thead>
-                                <tr>
-                                    <th colSpan="2" className="text-center">#</th>
-                                    <th colSpan="2" className="text-center">Posts</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td colSpan="2" className="text-center">1</td>
-                                    <td colSpan="2" className="text-center">Mark</td>
-
-                                </tr>
-                                <tr>
-                                    <td colSpan="2" className="text-center">1</td>
-                                    <td colSpan="2" className="text-center">Mark</td>
-                                </tr>
-                                <tr>
-                                    <td colSpan="2" className="text-center">1</td>
-                                    <td colSpan="2" className="text-center">Mark</td>
-                                </tr>
-                            </tbody>
-                        </Table>
+                                <thead>
+                                    <tr className="bg-info text-white">
+                                        <th colSpan="2" className="text-center">Id</th>
+                                        <th colSpan="2" className="text-center">Título</th>
+                                        <th colSpan="2" className="text-center">Data</th>
+                                        <th colSpan="2" className="text-center">Editar</th>
+                                    </tr>
+                                </thead>
+                                { post.map(
+                                    p => <TablePost data={p}></TablePost>
+                                )}
+                            </Table>
                         </Card.Body>
-                        
                     </Card>
-                    
                 </Container>
             </React.Fragment>
         );

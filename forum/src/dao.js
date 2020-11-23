@@ -45,6 +45,18 @@ async function listComentsByPostId(id){
     return await query.get();
 }
 
+async function listComentarios(id) {
+    let [comentarios] = await Promise.all([
+        listComentsByPostId(id)
+    ]);
+    comentarios = comentarios.docs.map(p => {
+        let {...comentarios} = p.data();
+        return comentarios;
+    });
+
+    return comentarios
+}
+
 async function getUserById(id){
     const query = db.collection("usuarios")
         .where("uid", "==", id)
@@ -63,19 +75,22 @@ async function listUsuario(id){
     return usuario
 }
 
-async function listComentarios(id) {
-    let [comentarios] = await Promise.all([
-        listComentsByPostId(id)
-    ]);
-    comentarios = comentarios.docs.map(p => {
-        let {...comentarios} = p.data();
-        return comentarios;
-    });
-
-    return comentarios
+async function getPostByUserId(id){
+    const query = db.collection("post")
+        .where("userId", "==", id)
+    return await query.get();
 }
 
+async function listPostsbyUser(id){
+    let [post] = await Promise.all([
+        getPostByUserId(id)
+    ]);
+    post = post.docs.map(u => {
+        let {...post} = u.data();
+        return post;
+    });
 
+    return post
+}
 
-
-export {list, listPost, listComentarios, listUsuario};
+export {list, listPost, listComentarios, listUsuario, listPostsbyUser};

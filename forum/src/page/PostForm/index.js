@@ -38,14 +38,14 @@ async function addPost(post) {
         userId: uid,
         ...post
     });
-    swal("Adicionado post ", added.title, "success");
-
+    
     post.uid = added.id;
-
     await db.collection("post").doc(added.id).update({
         userId: uid,
         ...post
     })
+
+    swal("Adicionado post ", post.title, "success");
 }
 
 async function updatePost(post, id){
