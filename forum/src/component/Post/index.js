@@ -141,8 +141,8 @@ function triggerAlert(){
         document.body.appendChild(textField);
         textField.select();
         document.execCommand('copy');
-        swal("Link Copiado", `${textField.value}`, "success")
-    
+        textField.remove();
+        swal("Link Copiado", "", "success")
     })
 }
 
