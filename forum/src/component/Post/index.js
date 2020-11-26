@@ -130,7 +130,20 @@ function Post(props) {
 }
 
 function triggerAlert(){
-    swal("Copie e compartilhe", window.location.href, "info")
+    swal({
+        title: "Copie e compartilhe", 
+        text: window.location.href, 
+        icon: "info",
+        value: window.location.href
+    }).then((value) => {
+        const textField = document.createElement('textarea');
+        textField.innerText = window.location.href;
+        document.body.appendChild(textField);
+        textField.select();
+        document.execCommand('copy');
+        swal("Link Copiado", `${textField.value}`, "success")
+    
+    })
 }
 
 

@@ -56,8 +56,8 @@ async function updatePost(post, id){
         userId: uid,
         ...post
     })
-
-    alert("Atualizado: " + post.uid)
+    
+    swal("Atualizado post ", post.title, "success");
 }
 
 function PostForm(props) {

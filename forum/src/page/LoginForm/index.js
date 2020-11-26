@@ -21,7 +21,7 @@ class LoginForm extends React.Component {
 
     constructor(props) {
         super(props);
-        
+
         this.state = {
             user: "",
             txtEmail: "",
@@ -36,17 +36,34 @@ class LoginForm extends React.Component {
     componentDidMount(){
         if(auth.currentUser){
             let {uid} = auth.currentUser;
-            
-            listUsuario(uid).then(user => {
-                this.setState({ user: user })
-            })
-            this.setState({
-                uid: uid
-            })
-            
+            let {emailVerified} = auth.currentUser;
+            if (emailVerified){
+                console.log("passei aqui")
+                listUsuario(uid).then(user => {
+                    this.setState({ user: user })
+                })
+                this.setState({
+                    uid: uid
+                })
+            }
         }
     }
 
+    componentDidCatch(){
+        if(auth.currentUser){
+            let {uid} = auth.currentUser;
+            let {emailVerified} = auth.currentUser;
+            if (emailVerified){
+                console.log("passei aqui")
+                listUsuario(uid).then(user => {
+                    this.setState({ user: user })
+                })
+                this.setState({
+                    uid: uid
+                })
+            }
+        }
+    }
 
     renderLoggedIn() {
         let uid = this.state.uid;
@@ -70,7 +87,7 @@ class LoginForm extends React.Component {
                 let {user} = response;
                 if (!user.emailVerified) {
                     this.setState({message: "Seu e-mail ainda não foi verificado!"});
-                    swal(this.state.message)
+                    swal("Ops", this.state.message, "error")
                     return;
                 }
                 this.setState({
@@ -83,13 +100,13 @@ class LoginForm extends React.Component {
             });
     }
 
-    renderLoggedOut() { 
+    renderLoggedOut() {
 
         return (
-            
+
             <React.Fragment>
-            <NavBar></NavBar>            
-           
+            <NavBar></NavBar>
+
             <div  className="image">
                 <div>{this.state.message}</div>
                 <Container className="d-flex align-itens-center justify-content-center" style={{ minHeight: "100vh" }}>
@@ -100,8 +117,8 @@ class LoginForm extends React.Component {
                                     <Button variant="secondary">Login</Button>
                                     <LinkContainer to="/registro">
                                         <Button variant="outline-secondary">Registrar</Button>
-                                    </LinkContainer> 
-                                </ButtonGroup>                    
+                                    </LinkContainer>
+                                </ButtonGroup>
                             </Card.Header>
                             <Card.Body>
                                 <Card.Title className="my-3">Login</Card.Title>
@@ -127,8 +144,9 @@ class LoginForm extends React.Component {
     }
 
     render() {
+        console.log(this.state.user)
         return this.state.user ? this.renderLoggedIn() : this.renderLoggedOut();
-        
+
     }
 }
 

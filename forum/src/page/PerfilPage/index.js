@@ -46,7 +46,9 @@ class PerfilPage extends React.Component {
     loginOut(){
         auth.signOut().then(
             swal('Realizado logout', "Volte mais vezes e compartilhe conhecimento", "info")
+            
         )
+        document.location = '/';
     }
 
     toogleDiv() {
@@ -105,7 +107,6 @@ class PerfilPage extends React.Component {
                                 <Col md={4}>
                                     <Image src={photoURL}  className="mx-5 my-5"  width="75%" height="75%" thumbnail />
                                     <div className="text-left ml-5">
-                                        <p className="text-muted text-small">{photoURL}</p>
                                         <h3>{displayName}</h3>
                                         <p>{nome} <b>{sobrenome}</b></p>
                                         <h5><RiLogoutBoxLine/><a className="text-info" onClick={this.loginOut}> logout</a></h5>

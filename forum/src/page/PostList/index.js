@@ -36,7 +36,7 @@ class PostList extends React.Component
         return (
             <Container>
             <div>
-                <h1 className="text-center my-4"> Bem vindo ao nosso Fórum</h1>
+                <h1 className="text-center my-4"> Bem vindo ao Fórum forDevs!</h1>
                 <h4 className="text-center">Se você precisar de ajuda, utilize o filtro abaixo para localizar o assunto que está pesquisando</h4>
             </div>
             <div>
@@ -57,7 +57,6 @@ class PostList extends React.Component
                     {posts.map(
                         p => <Post key={p.id} data={p} detail={'card'} />
                     )}
-                    
                 </div>
             </div>
             </Container>
